@@ -8,15 +8,15 @@ import java.util.Scanner;
  */
 public class FindShapeArea {
     public int squareArea(int side) {
-        return -1;
+        return side * side;
     }
 
     public double circleArea(int radius) {
-        return -1.0;
+        return radius * radius * Math.PI;
     }
 
     public double rightAngleTriangleArea(int height, int base) {
-        return -1.0;
+        return (height * base) / 2.0;
     }
 
     public static void main(String[] args) {
