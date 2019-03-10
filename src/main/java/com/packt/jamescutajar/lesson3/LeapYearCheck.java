@@ -9,7 +9,10 @@ public class LeapYearCheck {
      * Implement this method as explained in the reading material
      */
     public boolean isLeapYear(int year) {
-        return true;
+        if (year % 4 != 0) return false; //1997
+        else if (year % 100 != 0) return true; //1996
+        else if (year % 400 != 0) return false; //3000
+        else return true; //2000
     }
 
 
