@@ -9,7 +9,15 @@ public class TernaryConversion {
      * Implement this convert method as explained in the reading material
      */
     public String convert(int decimal) {
-        return "";
+        StringBuilder ternaryValue = new StringBuilder();
+        while (decimal > 0) {
+            ternaryValue.insert(0, (decimal % 3));
+            decimal = decimal / 3;
+        }
+        if (ternaryValue.length() == 0) {
+            return "0";
+        }
+        return ternaryValue.toString();
     }
 
     public static void main(String[] args) {
