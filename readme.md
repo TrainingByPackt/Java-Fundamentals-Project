@@ -1,4 +1,4 @@
-#Java Fundamentals Practical Exercise
+# Java Fundamentals Practical Exercise
 
 This repository contains all the necessary code and unit tests for the practical part of the
 'Java Fundamentals' course ware. Please follow the instructions below to get setup.
