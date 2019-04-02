@@ -23,6 +23,14 @@ public abstract class ChessPiece {
     public abstract List<MoveValidator> getValidMoves();
 
     public boolean moveTo(String position) {
-        return false;
+        boolean valid = false;
+        for (MoveValidator movementValidator : getValidMoves()) {
+            if (movementValidator.validate(currentPosition, position)) {
+                valid = true;
+                break;
+            }
+        }
+        if (valid) this.currentPosition = position;
+        return valid;
     }
 }
