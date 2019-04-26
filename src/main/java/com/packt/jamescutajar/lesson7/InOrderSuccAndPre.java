@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 /**
  * Exercise for Lesson 7.
- * Implement the methods and constructors in this class as explained in the readme file
+ * Implement the methods and constructors in this class as explained in the reading material
  */
 public class InOrderSuccAndPre {
 
