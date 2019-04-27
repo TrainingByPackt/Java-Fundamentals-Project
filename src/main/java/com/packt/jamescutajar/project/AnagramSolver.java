@@ -2,6 +2,7 @@ package com.packt.jamescutajar.project;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface AnagramSolver {
      * Once the words are loaded, they need to be stored in efficient
      * data structures so they can be used as a dictionary in the other methods.
      */
-    void loadWords(File textFile) throws ParseException, IOException;
+    void loadWords(InputStream textInput) throws ParseException, IOException;
 
     /**
      * This method selects a random word from the list of words loaded
@@ -38,5 +39,12 @@ public interface AnagramSolver {
      */
     boolean validateAttempt(String anagram, String attempt);
 
+    /**
+     * This method accepts an anagram and returns a list of possible solutions.
+     * For example findSolutions("eapgr") should return [gaper, grape, pager, parge]
+     * A fast implementation of the AnagramSolver will not require
+     * this method to go through every word in the dictionary, but instead use an
+     * efficient algorithm and data structure to look up all the possible solutions.
+     */
     List<String> findSolutions(String anagram);
 }
