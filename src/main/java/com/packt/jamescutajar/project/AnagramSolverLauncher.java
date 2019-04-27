@@ -1,6 +1,7 @@
 package com.packt.jamescutajar.project;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Scanner;
@@ -24,7 +25,7 @@ public class AnagramSolverLauncher {
      */
     public static void main(String[] args) throws IOException, ParseException {
         AnagramSolverImpl solver = new AnagramSolverImpl();
-        solver.loadWords(new File("src/main/resources/fiveLetters.txt"));
+        solver.loadWords(new FileInputStream("src/main/resources/fiveLetters.txt"));
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("*** Welcome to Anagram Solver! ***");

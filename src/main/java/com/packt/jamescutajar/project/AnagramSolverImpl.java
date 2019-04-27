@@ -1,9 +1,9 @@
 package com.packt.jamescutajar.project;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.*;
 
@@ -14,8 +14,8 @@ public class AnagramSolverImpl implements AnagramSolver {
     private Random rand = new Random();
 
     @Override
-    public void loadWords(File textFile) throws ParseException, IOException {
-        BufferedReader fileReader = new BufferedReader(new FileReader(textFile));
+    public void loadWords(InputStream textInput) throws ParseException, IOException {
+        BufferedReader fileReader = new BufferedReader(new InputStreamReader(textInput));
         String word = fileReader.readLine();
         int lineNumber = 1;
         while (word != null) {
