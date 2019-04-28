@@ -1,6 +1,5 @@
 package com.packt.jamescutajar.project;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
@@ -13,7 +12,7 @@ import java.util.List;
 public interface AnagramSolver {
 
     /**
-     * This method accept a textFile that contains a list of english words
+     * This method accepts a textInput containing a list of english words
      * Each word in the file should be on a separate line and only contain
      * valid lower case characters [a..z]
      * The method should throw a ParseException if this is not the case
@@ -25,10 +24,10 @@ public interface AnagramSolver {
     /**
      * This method selects a random word from the list of words loaded
      * in the loadWords method. Then it shuffles the characters creating
-     * an anagram. For example, after picking the word "sunny" the string
-     * is shuffled resulting in the anagram of "nysnu".
+     * a different string. For example, after picking the word "sunny" the string
+     * is shuffled resulting in the arrangement of "nysnu".
      */
-    String pickRandomAnagram();
+    String pickRandomArrangement();
 
     /**
      * This method validates attempts of solving the anagram. For example
@@ -37,14 +36,14 @@ public interface AnagramSolver {
      * contained in the existing dictionary of words (loaded from word file
      * in the loadWords method).
      */
-    boolean validateAttempt(String anagram, String attempt);
+    boolean validateAttempt(String characters, String attempt);
 
     /**
-     * This method accepts an anagram and returns a list of possible solutions.
+     * This method accepts a string containing characters and returns a list of possible solutions.
      * For example findSolutions("eapgr") should return [gaper, grape, pager, parge]
      * A fast implementation of the AnagramSolver will not require
      * this method to go through every word in the dictionary, but instead use an
      * efficient algorithm and data structure to look up all the possible solutions.
      */
-    List<String> findSolutions(String anagram);
+    List<String> findSolutions(String characters);
 }
