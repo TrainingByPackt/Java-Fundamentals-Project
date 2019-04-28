@@ -13,11 +13,11 @@ public class AnagramSolverLauncher {
      * implementation for the AnagramSolver
      *
      * *** Welcome to Anagram Solver! ***
-     * Can you solve the following anagram to make an english word?
-     * The anagram is: 'eapgr', attempt 1 of 5
+     * Can you rearrange these characters to make an english word?
+     * The characters are: 'eapgr', attempt 1 of 5
      * gepra
      * The word 'gepra' is not in my dictionary!
-     * The anagram is: 'eapgr', attempt 2 of 5
+     * The characters are: 'eapgr', attempt 2 of 5
      * pager
      * The word 'pager' is a correct solution!
      * In my dictionary I have the following valid word(s):
