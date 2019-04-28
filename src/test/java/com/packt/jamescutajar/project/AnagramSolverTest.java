@@ -21,7 +21,7 @@ public class AnagramSolverTest {
     @BeforeEach
     public void setup() throws IOException, ParseException {
         try {
-            anagramSolver = (AnagramSolver) Class.forName("com.packt.jamescutajar.project.AnagramSolverImpl").getDeclaredConstructor(String.class).newInstance();
+            anagramSolver = (AnagramSolver) Class.forName("com.packt.jamescutajar.project.AnagramSolverImpl").getDeclaredConstructor().newInstance();
         } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException
                 | InvocationTargetException | ClassCastException e) {
             fail("For this test to work you need to declare a class with the exact name and package 'com.packt.jamescutajar.project.AnagramSolverImpl'. " +
@@ -32,73 +32,75 @@ public class AnagramSolverTest {
     }
 
     @Test
-    public void testLoadWordsInvalidInputNumber() throws IOException{
+    public void testLoadWordsInvalidInputNumber() throws IOException {
         String invalidInput = "hello\nwonder\nnumber1\n";
         ByteArrayInputStream bin = new ByteArrayInputStream(invalidInput.getBytes());
         try {
             anagramSolver.loadWords(bin);
             fail("loadWords method should throw a ParseException when the input contains a numeric character");
         } catch (ParseException e) {
-            assertEquals(2, e.getErrorOffset(), "Error offset of parse exception should contain the correct line number");
+            assertEquals(3, e.getErrorOffset(), "Error offset of parse exception should contain the correct line number");
         }
     }
 
     @Test
-    public void testLoadWordsInvalidInputUppercase() throws IOException{
+    public void testLoadWordsInvalidInputUppercase() throws IOException {
         String invalidInput = "hello\nwonder\nUPPERCASE\n";
         ByteArrayInputStream bin = new ByteArrayInputStream(invalidInput.getBytes());
         try {
             anagramSolver.loadWords(bin);
             fail("loadWords method should throw a ParseException when the input contains an uppercase");
         } catch (ParseException e) {
-            assertEquals(2, e.getErrorOffset(), "Error offset of parse exception should contain the correct line number");
+            assertEquals(3, e.getErrorOffset(), "Error offset of parse exception should contain the correct line number");
         }
     }
 
     @Test
-    public void testLoadWordsInvalidInputDot() throws IOException{
+    public void testLoadWordsInvalidInputDot() throws IOException {
         String invalidInput = "hello\nwonder\nd.o.t.s\n";
         ByteArrayInputStream bin = new ByteArrayInputStream(invalidInput.getBytes());
         try {
             anagramSolver.loadWords(bin);
             fail("loadWords method should throw a ParseException when the input contains a character not in a..z");
         } catch (ParseException e) {
-            assertEquals(2, e.getErrorOffset(), "Error offset of parse exception should contain the correct line number");
+            assertEquals(3, e.getErrorOffset(), "Error offset of parse exception should contain the correct line number");
         }
     }
 
 
     @Test
     public void testPickRandom() throws IOException, ParseException {
-        char[] chars = anagramSolver.pickRandomArrangement().toCharArray();
+        String word = anagramSolver.pickRandomArrangement();
+        char[] chars = word.toCharArray();
         Arrays.sort(chars);
         boolean valid = false;
-        for (String str: input.split("\n")) {
-            char[] charsWrod = toString().toCharArray();
+        for (String str : input.split("\n")) {
+            char[] charsWrod = str.toCharArray();
             Arrays.sort(charsWrod);
             if (Arrays.equals(charsWrod, chars)) valid = true;
         }
-        assertTrue(valid, "The method pickRandomArrangement is not returning a valid result. It should return a random shuffle of a word it the given dictionary");
+        assertTrue(valid, "The method pickRandomArrangement is not returning a valid result. It should return a random shuffle of a word it the given dictionary. " +
+                "Method returned " + word + ". Expecting a random shuffle of one of [" + input + "]");
     }
 
     @Test
     public void testValidateBadAttemptWrongWord() {
-        assertFalse(anagramSolver.validateAttempt("dsteress","testwrong"), "Validate attempt should return false when the wrong attempt is given");
+        assertFalse(anagramSolver.validateAttempt("dsteress", "testwrong"), "Validate attempt should return false when the wrong attempt is given");
     }
 
     @Test
     public void testValidateBadAttemptDictWord() {
-        assertFalse(anagramSolver.validateAttempt("dsteress","empty"), "Validate attempt should return false when the wrong attempt is given");
+        assertFalse(anagramSolver.validateAttempt("dsteress", "empty"), "Validate attempt should return false when the wrong attempt is given");
     }
 
     @Test
     public void testValidateBadAttemptNonDictWord() {
-        assertFalse(anagramSolver.validateAttempt("dsteress","dseretss"), "Validate attempt should return false when the wrong attempt is given");
+        assertFalse(anagramSolver.validateAttempt("dsteress", "dseretss"), "Validate attempt should return false when the wrong attempt is given");
     }
 
     @Test
     public void testValidateCorrectAttempt() {
-        assertFalse(anagramSolver.validateAttempt("dsteress","stressed"), "Validate attempt should return true when the correct attempt is given");
+        assertTrue(anagramSolver.validateAttempt("dsteress", "stressed"), "Validate attempt should return true when the correct attempt is given");
     }
 
     @Test
