@@ -60,10 +60,12 @@ public class AnagramSolverImpl implements AnagramSolver {
         return allWords.contains(attempt);
     }
 
+    @Override
     public List<String> findSolutions(String characters) {
         char[] chars = characters.toCharArray();
         Arrays.sort(chars);
-        return sortedCharsToWords.get(new String(chars));
+        List<String> solution = sortedCharsToWords.get(new String(chars));
+        return solution == null ? Collections.emptyList() : solution;
     }
 }
 
