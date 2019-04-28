@@ -9,7 +9,7 @@ import java.util.*;
 
 public class AnagramSolverImpl implements AnagramSolver {
     private Set<String> allWords = new HashSet<>();
-    private Map<String, List<String>> anagramToWords = new HashMap<>();
+    private Map<String, List<String>> sortedCharsToWords = new HashMap<>();
     private ArrayList<String> wordList = new ArrayList<>();
     private Random rand = new Random();
 
@@ -26,17 +26,16 @@ public class AnagramSolverImpl implements AnagramSolver {
             wordList.add(word);
             char[] characters = word.toCharArray();
             Arrays.sort(characters);
-            String sortedAnagram = new String(characters);
-            anagramToWords.putIfAbsent(sortedAnagram, new ArrayList<>());
-            anagramToWords.putIfAbsent(sortedAnagram, new ArrayList<>());
-            anagramToWords.get(sortedAnagram).add(word);
+            String sortedChars = new String(characters);
+            sortedCharsToWords.putIfAbsent(sortedChars, new ArrayList<>());
+            sortedCharsToWords.get(sortedChars).add(word);
             word = fileReader.readLine();
             lineNumber++;
         }
     }
 
     @Override
-    public String pickRandomAnagram() {
+    public String pickRandomArrangement() {
         int randPick = rand.nextInt(allWords.size());
         StringBuilder randWord = new StringBuilder(wordList.get(randPick));
         for (int i = randWord.length() - 1; i > 0; i--) {
@@ -49,11 +48,11 @@ public class AnagramSolverImpl implements AnagramSolver {
     }
 
     @Override
-    public boolean validateAttempt(String anagram, String attempt) {
-        //First check if the attempt string has the same character count as the anagram
+    public boolean validateAttempt(String characters, String attempt) {
+        //First check if the attempt string has the same character count as the characters
         int[] charCount = new int[256];
-        for (int i = 0; i < anagram.length(); i++)
-            charCount[anagram.charAt(i)]++;
+        for (int i = 0; i < characters.length(); i++)
+            charCount[characters.charAt(i)]++;
         for (int i = 0; i < attempt.length(); i++)
             charCount[attempt.charAt(i)]--;
         for (int i1 : charCount) if (i1 != 0) return false;
@@ -61,11 +60,10 @@ public class AnagramSolverImpl implements AnagramSolver {
         return allWords.contains(attempt);
     }
 
-    public List<String> findSolutions(String anagram) {
-        char[] characters = anagram.toCharArray();
-        Arrays.sort(characters);
-        String sortedAnagram = new String(characters);
-        return anagramToWords.get(sortedAnagram);
+    public List<String> findSolutions(String characters) {
+        char[] chars = characters.toCharArray();
+        Arrays.sort(chars);
+        return sortedCharsToWords.get(new String(chars));
     }
 }
 
