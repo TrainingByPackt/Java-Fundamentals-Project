@@ -40,7 +40,10 @@ public interface AnagramSolver {
 
     /**
      * This method accepts a string containing characters and returns a list of possible solutions.
-     * For example findSolutions("eapgr") should return [gaper, grape, pager, parge]
+     * For example
+     *    findSolutions("eapgr") should return [gaper, grape, pager, parge]
+     *    findSolutions("aaaaa") should return [] //empty list if it cannot find any match
+     *
      * A fast implementation of the AnagramSolver will not require
      * this method to go through every word in the dictionary, but instead use an
      * efficient algorithm and data structure to look up all the possible solutions.
