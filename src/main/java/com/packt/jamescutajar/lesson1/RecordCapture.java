@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Exercise for Lesson 1.
  * Implement main method as explained in the material accompanying this course
  */
-public class SayHello {
+public class RecordCapture {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter your name");
